@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/practice_react_forms_2M/static/css/main.7acaea2f.css",
+    "main.js": "/practice_react_forms_2M/static/js/main.07d3183d.js",
+    "index.html": "/practice_react_forms_2M/index.html",
+    "main.7acaea2f.css.map": "/practice_react_forms_2M/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/practice_react_forms_2M/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
