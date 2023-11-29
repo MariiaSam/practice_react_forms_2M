@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from './Form/Form';
 
 import TodoList from './TodoList/TodoList';
+import TodoEditor from './TodoEditor/TodoEditor'
 
 
 class App extends Component {
@@ -22,10 +23,11 @@ class App extends Component {
   };
 
   toggleCompleted = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.map(todo =>
+
+    this.setState(({todos}) => ({
+      todos: todos.map(todo =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-      ),
+      ), 
     }));
   };
   
@@ -73,6 +75,8 @@ console.log(data)
           onChange={this.handlerInputChange}
         ></input> */}
     <Form onSubmit={this.formSubmitHandler}></Form> 
+
+    <TodoEditor></TodoEditor>
     {/* onSubmit - props */}
         <div>
           <p> Загальна кількість: {totalTodoCount} </p>
