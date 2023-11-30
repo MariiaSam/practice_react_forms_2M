@@ -1,23 +1,29 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import './TodoEditor.css';
 
 class TodoEditor extends Component {
-
     state = {
-        message: ''
+        message: '',
     }
 
-    handlerChange = e => {
-    
+    handleChange = e => {
+        this.setState({ message: e.currentTarget.value });
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.onSubmit(this.state.message);
+        this.setState({ message: '' });
     }
 
     render() {
         return (
-            <form>
-                <textarea value={this.state.message} onChange={this.handlerChange}></textarea>
-            <button type='button'>Add</button>
-            </form> );
+            <form onSubmit={this.handleSubmit}>
+                <textarea value={this.state.message} onChange={this.handleChange}></textarea>
+                <button type='submit'>Add</button>
+            </form>
+        );
     }
-
 }
 
-export default TodoEditor
+export default TodoEditor;

@@ -12,9 +12,23 @@ class App extends Component {
       { id: 'id_2', text: 'Counter', completed: true },
       { id: 'id_3', text: 'Redux', completed: false },
     ],
+    filter: '' ,
     inputValue: '',
   
   };
+
+addTodo = text =>{
+
+  const todo = {
+    id: 12,
+    text,
+    completed: false
+  }
+
+ this.setState(({todos}) => ({
+  todos: [todo, ...todos]
+}))
+}
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
@@ -30,6 +44,10 @@ class App extends Component {
       ), 
     }));
   };
+
+  changeFilter = (e) => {
+    this.setState(({filter: e.currentTarget.value}))
+  }
   
 
 formSubmitHandler = data => {
@@ -57,7 +75,7 @@ console.log(data)
 
 
   render() {
-    const { todos } = this.state;
+    const { todos, filter } = this.state;
 
     const totalTodoCount = todos.length;
 
@@ -76,12 +94,15 @@ console.log(data)
         ></input> */}
     <Form onSubmit={this.formSubmitHandler}></Form> 
 
-    <TodoEditor></TodoEditor>
+
     {/* onSubmit - props */}
         <div>
           <p> Загальна кількість: {totalTodoCount} </p>
           <p> Загальна кількість виконаних: {completedTodoCount} </p>
         </div>
+    <TodoEditor onSubmit={this.addTodo }></TodoEditor>
+
+ <label>Filter<input type='text' value={filter} onChange={this.changeFilter}></input></label>
         <TodoList todos={todos} onDeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted} />
       </div>
     );
