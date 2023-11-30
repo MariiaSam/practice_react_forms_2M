@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Form from './Form/Form';
 
 import TodoList from './TodoList/TodoList';
-import TodoEditor from './TodoEditor/TodoEditor'
+import TodoEditor from './TodoEditor/TodoEditor';
 
+import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
@@ -12,23 +13,21 @@ class App extends Component {
       { id: 'id_2', text: 'Counter', completed: true },
       { id: 'id_3', text: 'Redux', completed: false },
     ],
-    filter: '' ,
+    filter: '',
     inputValue: '',
-  
   };
 
-addTodo = text =>{
+  addTodo = text => {
+    const todo = {
+      id: 12,
+      text,
+      completed: false,
+    };
 
-  const todo = {
-    id: 12,
-    text,
-    completed: false
-  }
-
- this.setState(({todos}) => ({
-  todos: [todo, ...todos]
-}))
-}
+    this.setState(({ todos }) => ({
+      todos: [todo, ...todos],
+    }));
+  };
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
@@ -37,23 +36,29 @@ addTodo = text =>{
   };
 
   toggleCompleted = todoId => {
-
-    this.setState(({todos}) => ({
+    this.setState(({ todos }) => ({
       todos: todos.map(todo =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-      ), 
+      ),
     }));
   };
 
-  changeFilter = (e) => {
-    this.setState(({filter: e.currentTarget.value}))
-  }
-  
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
 
-formSubmitHandler = data => {
-console.log(data)
-}
+  getfilteredTodos = () => {
+    const { filter, todos } = this.state;
 
+    const normalizedFilter = filter.toLowerCase();
+    return this.state.todos.filter(todo =>
+      todo.text.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  formSubmitHandler = data => {
+    console.log(data);
+  };
 
   // handlerNameChange = event => {
   //   console.log(event.currentTarget.value);
@@ -73,37 +78,43 @@ console.log(data)
   //   this.setState({inputValue: event.currentTarget.value})
   // };
 
+  getCompletedTodoCount = () => {
+    const { todos } = this.state;
+
+    return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+  };
 
   render() {
     const { todos, filter } = this.state;
 
     const totalTodoCount = todos.length;
 
-    const completedTodoCount = todos.reduce(
-      (acc, todo) => (todo.completed ? acc + 1 : acc),
-      0
-    );
+    const completedTodoCount = this.getCompletedTodoCount();
+
+    const filteredTodos = this.getfilteredTodos();
 
     return (
       <div>
-       
         {/* <input
           type="text"
           value={this.state.inputValue}
           onChange={this.handlerInputChange}
         ></input> */}
-    <Form onSubmit={this.formSubmitHandler}></Form> 
+        <Form onSubmit={this.formSubmitHandler}></Form>
 
-
-    {/* onSubmit - props */}
+        {/* onSubmit - props */}
         <div>
           <p> Загальна кількість: {totalTodoCount} </p>
           <p> Загальна кількість виконаних: {completedTodoCount} </p>
         </div>
-    <TodoEditor onSubmit={this.addTodo }></TodoEditor>
+        <TodoEditor onSubmit={this.addTodo}></TodoEditor>
 
- <label>Filter<input type='text' value={filter} onChange={this.changeFilter}></input></label>
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted} />
+        <Filter value={filter} onChange={this.changeFilter}></Filter>
+        <TodoList
+          todos={filteredTodos}
+          onDeleteTodo={this.deleteTodo}
+          onToggleCompleted={this.toggleCompleted}
+        />
       </div>
     );
   }
