@@ -48,8 +48,7 @@ class App extends Component {
   };
 
   getfilteredTodos = () => {
-    const { filter, todos } = this.state;
-
+    const { filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
     return this.state.todos.filter(todo =>
       todo.text.toLowerCase().includes(normalizedFilter)
@@ -79,9 +78,9 @@ class App extends Component {
   // };
 
   getCompletedTodoCount = () => {
-    const { todos } = this.state;
+    // const { todos } = this.state;
 
-    return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+    return this.state.todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
   };
 
   render() {
