@@ -9,13 +9,49 @@ import Filter from './Filter/Filter';
 class App extends Component {
   state = {
     todos: [
-      { id: 'id_1', text: 'Learn', completed: true },
-      { id: 'id_2', text: 'Counter', completed: true },
-      { id: 'id_3', text: 'Redux', completed: false },
+      // { id: 'id_1', text: 'Learn', completed: true },
+      // { id: 'id_2', text: 'Counter', completed: true },
+      // { id: 'id_3', text: 'Redux', completed: false },
     ],
     filter: '',
     inputValue: '',
   };
+
+
+  //забрати з беку
+  componentDidMount() {
+    console.log('App componentDidMount');
+
+    const todos = localStorage.getItem('todos');
+    const parsedTodos = JSON.parse(todos);
+
+setTimeout(() => {
+  
+}, 2000);
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+
+//записати в сховище, відправити запит
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+
+    const nextTodos = this.state.todos;
+    const prevTodos = prevState.todos;
+
+    if (nextTodos !== prevTodos) {
+      console.log('Оновилось поле todos, запису ю todos в сховище');
+      localStorage.setItem('todos', JSON.stringify(nextTodos ));
+    }
+
+    if (nextTodos.length > prevTodos.length && prevTodos.length !== 0) {
+      this.toggleModal();
+    }
+  }
+
 
   addTodo = text => {
     const todo = {
@@ -78,10 +114,12 @@ class App extends Component {
   // };
 
   getCompletedTodoCount = () => {
-    // const { todos } = this.state;
-
-    return this.state.todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+    const { todos } = this.state;
+    return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
   };
+  
+
+  
 
   render() {
     const { todos, filter } = this.state;

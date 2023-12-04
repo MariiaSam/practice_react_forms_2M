@@ -1,8 +1,10 @@
-const Filter = ({value, onChange}) => {
-  <label>
-    Filter
-    <input type="text" value={value} onChange={onChange}></input>
-  </label>;
+const Filter = ({ value, onChange }) => {
+  return (
+    <label>
+      Filter
+      <input type="text" value={value} onChange={onChange} />
+    </label>
+  );
 };
 
 export default Filter;

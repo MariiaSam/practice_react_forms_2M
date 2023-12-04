@@ -22,7 +22,7 @@ class Form extends Component {
 
     this.props.onSubmit(this.state);
 
-    this.resert();
+    this.reset();
   };
 
   handlerLicenceChange = e => {
@@ -31,7 +31,7 @@ class Form extends Component {
 
 }
 
-  resert = () => {
+  reset = () => {
     this.setState({ name: '', tag: '' });
   };
 
