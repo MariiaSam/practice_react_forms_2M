@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/practice_react_forms_2M/static/css/main.0cdead65.css",
-    "main.js": "/practice_react_forms_2M/static/js/main.fb043ca9.js",
+    "main.js": "/practice_react_forms_2M/static/js/main.c5471172.js",
     "index.html": "/practice_react_forms_2M/index.html",
     "main.0cdead65.css.map": "/practice_react_forms_2M/static/css/main.0cdead65.css.map",
-    "main.fb043ca9.js.map": "/practice_react_forms_2M/static/js/main.fb043ca9.js.map"
+    "main.c5471172.js.map": "/practice_react_forms_2M/static/js/main.c5471172.js.map"
   },
   "entrypoints": [
     "static/css/main.0cdead65.css",
-    "static/js/main.fb043ca9.js"
+    "static/js/main.c5471172.js"
   ]
 }
