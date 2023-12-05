@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/practice_react_forms_2M/static/css/main.0cdead65.css",
-    "main.js": "/practice_react_forms_2M/static/js/main.c5471172.js",
+    "main.js": "/practice_react_forms_2M/static/js/main.5b9443ed.js",
+    "static/media/add.svg": "/practice_react_forms_2M/static/media/add.628a4c9cc1ce8d4a11b63563ed8f0fa5.svg",
+    "static/media/delete.svg": "/practice_react_forms_2M/static/media/delete.17f1a4c877f4db1a8038284c4a5536b1.svg",
     "index.html": "/practice_react_forms_2M/index.html",
     "main.0cdead65.css.map": "/practice_react_forms_2M/static/css/main.0cdead65.css.map",
-    "main.c5471172.js.map": "/practice_react_forms_2M/static/js/main.c5471172.js.map"
+    "main.5b9443ed.js.map": "/practice_react_forms_2M/static/js/main.5b9443ed.js.map"
   },
   "entrypoints": [
     "static/css/main.0cdead65.css",
-    "static/js/main.c5471172.js"
+    "static/js/main.5b9443ed.js"
   ]
 }
